@@ -1,0 +1,7 @@
+# Throwaway spikes (own nested git repos, large node_modules/renders)
+spikes/
+
+node_modules/
+out/
+.DS_Store
+.claude/settings.local.json
