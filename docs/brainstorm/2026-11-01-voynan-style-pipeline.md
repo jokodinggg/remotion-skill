@@ -101,9 +101,35 @@ Sebelum membangun dengan benar, user memilih **eksplorasi dulu lewat spike per l
 
 **Usulan berikutnya (belum disetujui):** mini spike untuk opsi A. Isinya 1 karakter parametrik (3 ekspresi, 2 pose) + 4 props + 1 stage isometrik → 1 adegan ala "Peluang Sukses" yang memenuhi frame, dibandingkan berdampingan dengan frame Voynan.
 
-## 7. Langkah berikutnya
+**Keputusan (2026-11-01):** opsi A. Joks dibuat ulang sebagai rig vektor. Lihat [ADR-0004](../adr/0004-library-ilustrasi-svg-dan-rig-joks.md).
 
-1. User memutuskan: mini spike ilustrasi opsi A, atau langsung opsi C.
-2. User mengatur `sandbox.excludedCommands: ["npx remotion *"]` sendiri di `.claude/settings.local.json`, supaya Claude bisa render.
-3. Menulis **spec Fondasi + Motion Graphics 2D** di `docs/superpowers/specs/`, lalu menyusun implementation plan.
-4. Keputusan suara (ElevenLabs atau rekaman user) dan sumber musik bebas royalti.
+## 7. Brand jokoding (dari `assets/Jokoding-Graphic-Standard-Manual.pdf`)
+
+- **Palet:** Lawn Green `#44AA00`, Thunder `#322F30`, Mint Cream `#F9FDF7`. Pendukung: Hijau Tua `#2E7A00`, Hijau Terang `#7BDB2E`, Layar `#262324`, Glow `#B9FF7A`, Kuning `#FFD400`, Merah `#FF6B57` (khusus ekspresi marah).
+- **Font:** Poppins. 700 untuk hook, 600 untuk subjudul, 500 untuk label, 400 untuk teks isi.
+- **Maskot Joks:** 9 ekspresi (netral, halo, senang, kaget, sedih, marah, bingung, jempol, nunjuk). Ekspresi hanya berubah di layar wajah dan gerak tangan. Joks berperan sebagai teman yang menunjukkan solusi, bukan penjual.
+- **Reels 9:16:**
+  - Area kosong 250 px di atas dan 420 px di bawah. Hindari kolom kanan (x > 960, y 900–1500).
+  - Logo kecil di kanan atas, tepat di bawah UI Instagram.
+  - Subtitle kecil, kuning, huruf kecil, di atas pill Thunder. Kata "jokoding" berwarna hijau.
+  - CTA ke WhatsApp (link di bio) dan jokoding.id. Video ditutup dengan "Apa pilihanmu?".
+- **Konflik yang perlu diputuskan di spec:** subtitle brand yang kecil berbeda dengan Caption Kata besar ala Voynan. Untuk konten jokoding, aturan brand menang. Untuk klien lain, gaya caption mengikuti Brand Kit masing-masing.
+
+## 8. Mini spike ilustrasi: hasil
+
+**Kode:** `spikes/remotion-spike/src/joks/` (throwaway).
+
+- **`JoksCompare`:** rig vektor vs PNG resmi untuk ke-9 ekspresi. Hasilnya hampir identik, setelah 1 iterasi koreksi arah miring dan posisi tangan. Rig mendukung kedip, mulut bicara (`talk`), interpolasi pose antar ekspresi (`lerpPose`), serta dekorasi (bintang, !, ?, air mata, uap).
+- **Kit gaya brand:** `Person` (chibi dengan mood panik/senang/netral), meja, laptop, lampu, tumpukan kertas, jam dinding, kalender, dan jendela malam. Semuanya dengan outline Thunder dan palet resmi.
+- **`out/Deadline.mp4`:** adegan 11,5 detik "deadline besok, progres 0%?" → Joks muncul kaget → halo "konsultasi dulu ke jokoding" → nunjuk ke CTA WhatsApp → jempol. Progres naik ke 100%, subtitle mengikuti gaya brand, logo di kanan atas. Render 16 detik di M2, dijalankan sendiri oleh Claude setelah `sandbox.excludedCommands` aktif.
+- **Pelajaran komposisi:** iterasi pertama terlalu kecil (objek ±40% frame). Setelah kamera di-scale 1,16–1,26, Joks diperbesar ke 520 px, dan objek yang menumpuk dipindah, frame terasa penuh. Ini mengonfirmasi bahwa aturan komposisi di `MOTION.md` dan QA contact sheet wajib ada.
+- **Sisa kekurangan:**
+  - Karakter manusia baru 1 varian. Butuh variasi rambut, kulit, outfit, dan pose.
+  - Belum ada stage isometrik maupun `<Crowd>`.
+  - Garis lantai dan meja belum rapi saat kamera bergerak.
+  - Suara masih TTS robotik.
+
+## 9. Langkah berikutnya
+
+1. Menulis **spec Fondasi + Motion Graphics 2D** di `docs/superpowers/specs/`, lalu menyusun implementation plan. Rig Joks dan kit gaya brand dari mini spike menjadi titik awal desain library, tapi kodenya ditulis ulang dengan rapi.
+2. Keputusan suara (ElevenLabs atau rekaman user) dan sumber musik bebas royalti.

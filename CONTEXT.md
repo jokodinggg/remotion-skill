@@ -38,6 +38,14 @@ _Avoid_: playlist, episode (untuk kumpulan)
 Identitas visual satu pemilik konten (jokoding atau seorang klien): palet, font, logo, dan chip seri.
 _Avoid_: theme, branding
 
+**Joks**:
+Maskot jokoding: robot hijau berkepala awan dengan wajah berupa layar. Tampil sebagai teman yang menunjukkan solusi, bukan penjual.
+_Avoid_: robot, maskot (tanpa nama)
+
+**Ekspresi**:
+Salah satu dari 9 keadaan resmi Joks (netral, halo, senang, kaget, sedih, marah, bingung, jempol, nunjuk). Setiap ekspresi menentukan wajah di layar dan pose tangan.
+_Avoid_: pose, mood (untuk Joks)
+
 **Library Ilustrasi**:
 Kumpulan karakter, props, dan stage yang bisa dipakai ulang lintas video dan bisa dianimasikan per bagian.
 _Avoid_: aset, clipart
