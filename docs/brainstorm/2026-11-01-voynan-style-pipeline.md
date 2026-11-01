@@ -103,7 +103,7 @@ Sebelum membangun dengan benar, user memilih **eksplorasi dulu lewat spike per l
 
 **Keputusan (2026-11-01):** opsi A. Joks dibuat ulang sebagai rig vektor. Lihat [ADR-0004](../adr/0004-library-ilustrasi-svg-dan-rig-joks.md).
 
-## 7. Brand jokoding (dari `assets/Jokoding-Graphic-Standard-Manual.pdf`)
+## 7. Brand jokoding (dari `brand/jokoding/assets/Jokoding-Graphic-Standard-Manual.pdf`)
 
 - **Palet:** Lawn Green `#44AA00`, Thunder `#322F30`, Mint Cream `#F9FDF7`. Pendukung: Hijau Tua `#2E7A00`, Hijau Terang `#7BDB2E`, Layar `#262324`, Glow `#B9FF7A`, Kuning `#FFD400`, Merah `#FF6B57` (khusus ekspresi marah).
 - **Font:** Poppins. 700 untuk hook, 600 untuk subjudul, 500 untuk label, 400 untuk teks isi.

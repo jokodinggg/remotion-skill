@@ -11,4 +11,4 @@ Ilustrasi 2D dibangun sebagai komponen React/SVG parametrik yang ditulis sendiri
 ## Consequences
 
 - Rig Joks wajib dicek berdampingan dengan PNG resmi (komposisi `JoksCompare`) setiap kali bentuknya diubah. Warna dan proporsi mengikuti manual halaman 06/08.
-- PNG resmi di `assets/` tetap menjadi acuan kebenaran untuk bentuk Joks.
+- PNG resmi di `brand/jokoding/assets/joks/` tetap menjadi acuan kebenaran untuk bentuk Joks.

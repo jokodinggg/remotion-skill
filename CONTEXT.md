@@ -50,6 +50,28 @@ _Avoid_: pose, mood (untuk Joks)
 Kumpulan karakter, props, dan stage yang bisa dipakai ulang lintas video dan bisa dianimasikan per bagian.
 _Avoid_: aset, clipart
 
+## Alur kerja
+
+**Fase Naskah**:
+Tahap pertama pembuatan video. Ide atau naskah pemilik diolah menjadi Naskah siap generate. Tahap ini berakhir ketika Naskah diserahkan ke pemilik.
+_Avoid_: pre-produksi, scripting
+
+**Fase Produksi**:
+Tahap setelah pemilik menaruh audio hasil ElevenLabs. Audio ditranskrip, disejajarkan dengan Naskah, divisualkan, dicek, lalu dirender menjadi MP4.
+_Avoid_: render (sebagai nama tahap), post-produksi
+
+**Naskah**:
+Teks siap tempel ke ElevenLabs. Isinya satu Baris VO per paragraf, masing-masing diawali Audio Tag.
+_Avoid_: script (untuk file siap tempel), prompt VO
+
+**Audio Tag**:
+Instruksi gaya bicara dalam kurung siku di Naskah, misalnya `[whispers]` atau `[excited]`. Tag ini tidak diucapkan. Tag juga menentukan Ekspresi default karakter di scene.
+_Avoid_: emotion tag, mood
+
+**Arketipe**:
+Pola scene siap pakai yang menjadi titik awal visual satu Baris VO, misalnya Masalah, Perbandingan, atau Langkah. Boleh dipakai langsung atau dimodifikasi.
+_Avoid_: template, preset scene
+
 ## Struktur video
 
 **Baris VO**:
