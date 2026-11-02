@@ -25,4 +25,17 @@ describe("JOKODING", () => {
   it("has the brand palette", () => {
     expect(JOKODING.palette.thunder).toBe("#322F30");
   });
+
+  it("has the caption style", () => {
+    expect(JOKODING.caption).toEqual({
+      bg: "#322F30",
+      bgOpacity: 0.94,
+      text: "#FFD400",
+      brandWord: "#7BDB2E",
+      keyword: "#B9FF7A",
+      fontSize: 46,
+      fontWeight: "600",
+      inactiveOpacity: 0.45,
+    });
+  });
 });

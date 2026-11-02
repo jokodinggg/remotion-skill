@@ -27,5 +27,15 @@ export const JOKODING: BrandKit = {
     sub: "link di bio · jokoding.id",
     closing: "Apa pilihanmu?",
   },
+  caption: {
+    bg: "#322F30",
+    bgOpacity: 0.94,
+    text: "#FFD400",
+    brandWord: "#7BDB2E",
+    keyword: "#B9FF7A",
+    fontSize: 46,
+    fontWeight: "600",
+    inactiveOpacity: 0.45,
+  },
   safeArea: { top: 250, bottom: 420, rail: { xMin: 960, yMin: 900, yMax: 1500 } },
 };

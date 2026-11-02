@@ -17,6 +17,16 @@ export type BrandKit = {
   logo: { color: string; light: string; right: number; top: number; width: number };
   voices: Record<string, { name: string; elevenLabsId: string | null }>;
   cta: { title: string; sub: string; closing: string };
+  caption: {
+    bg: string;
+    bgOpacity: number;
+    text: string;
+    brandWord: string;
+    keyword: string;
+    fontSize: number;
+    fontWeight: "600";
+    inactiveOpacity: number;
+  };
   safeArea: {
     top: number;
     bottom: number;
