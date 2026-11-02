@@ -47,7 +47,7 @@ describe("ScriptSchema", () => {
   });
 
   it("rejects a missing spoken with the field path", () => {
-    const { spoken: _spoken, ...rest } = example.lines[0];
+    const rest: Partial<typeof example.lines[0]> = { ...example.lines[0] }; delete rest.spoken;
     expect(errorText({ ...example, lines: [rest] })).toContain("lines.0.spoken");
   });
 });

@@ -6,7 +6,7 @@ const MAP: Record<string, { joks: JoksExpression; person: PersonMood }> = {
   excited: { joks: "senang", person: "senang" },
   happy: { joks: "senang", person: "senang" },
   panicked: { joks: "kaget", person: "panik" },
-  surprised: { joks: "kaget", person: "kagum" },
+  surprised: { joks: "kaget", person: "panik" },
   sighs: { joks: "sedih", person: "sedih" },
   sad: { joks: "sedih", person: "sedih" },
   curious: { joks: "bingung", person: "bingung" },
