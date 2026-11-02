@@ -1,0 +1,38 @@
+{
+  "slug": "0000-contoh",
+  "seri": "joki-cepat",
+  "voice": null,
+  "title": "Deadline besok, progres 0%?",
+  "music": {
+    "mood": "tense-to-upbeat",
+    "bpm": 110,
+    "prompt": "tense minimal electronic, ticking clock pulse, resolving into upbeat, instrumental, no vocals"
+  },
+  "lines": [
+    {
+      "id": "01",
+      "speaker": "narator",
+      "tag": "panicked",
+      "spoken": "Deadline besok... progres masih nol persen?",
+      "caption": "deadline besok, progres masih 0%?",
+      "keywords": ["deadline", "0%"],
+      "visual": "Mahasiswa panik di meja belajar malam, kartu progres 0%."
+    },
+    {
+      "id": "02",
+      "speaker": "joks",
+      "tag": "calm",
+      "spoken": "Tenang. Konsultasi dulu ke jokoding.",
+      "keywords": ["jokoding"],
+      "visual": "Joks muncul tenang, menunjuk logo jokoding."
+    },
+    {
+      "id": "03",
+      "speaker": "joks",
+      "tag": "excited",
+      "spoken": "Chat aja lewat WhatsApp, link di bio!",
+      "keywords": ["whatsapp"],
+      "visual": "Bubble chat WhatsApp melayang, panah ke link di bio."
+    }
+  ]
+}
