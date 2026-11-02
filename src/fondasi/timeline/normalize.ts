@@ -1,7 +1,7 @@
 import type { ScriptLine } from "../schema";
 
 const ONES = ["nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"];
-const EDGE_PUNCT = /^[?!.,:;"'()…]+|[?!.,:;"'()…]+$/g;
+const EDGE_PUNCT = /^[?!.,:;"'()…“”‘’–—]+|[?!.,:;"'()…“”‘’–—]+$/g;
 
 export type DisplayToken = { display: string; spoken: string[] };
 
@@ -92,9 +92,28 @@ export class UnspeakableTokenError extends Error {
   }
 }
 
-function isUnspeakable(display: string): boolean {
-  const core = normalizeWord(stripEdges(display));
-  return display.includes("/") || (/[a-z]/.test(core) && /\d/.test(core));
+function isUnspeakable(token: DisplayToken): boolean {
+  const core = normalizeWord(stripEdges(token.display));
+  return (
+    token.display.includes("/") ||
+    (/[a-z]/.test(core) && /\d/.test(core)) ||
+    token.spoken.some((w) => /\d/.test(w))
+  );
+}
+
+/** Like tokenize, but a number the speller cannot handle becomes an UnspeakableTokenError. */
+function tokenizeForLine(lineId: string, text: string): DisplayToken[] {
+  return text
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((display) => {
+      try {
+        return tokenize(display)[0];
+      } catch (e) {
+        if (e instanceof RangeError) throw new UnspeakableTokenError(lineId, display);
+        throw e;
+      }
+    });
 }
 
 /**
@@ -102,10 +121,11 @@ function isUnspeakable(display: string): boolean {
  * pronounce, or when the caption's spoken form differs from the spoken text.
  */
 export function checkCaption(line: ScriptLine): void {
-  const spokenTokens = tokenize(stripTags(line.spoken));
-  const captionTokens = line.caption === undefined ? undefined : tokenize(line.caption);
+  const spokenTokens = tokenizeForLine(line.id, stripTags(line.spoken));
+  const captionTokens =
+    line.caption === undefined ? undefined : tokenizeForLine(line.id, line.caption);
   for (const t of captionTokens ?? spokenTokens) {
-    if (isUnspeakable(t.display)) throw new UnspeakableTokenError(line.id, t.display);
+    if (isUnspeakable(t)) throw new UnspeakableTokenError(line.id, t.display);
   }
   if (captionTokens) {
     const flat = (ts: DisplayToken[]) => ts.flatMap((t) => t.spoken).join(" ");

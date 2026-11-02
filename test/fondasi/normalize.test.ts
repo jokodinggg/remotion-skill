@@ -56,6 +56,14 @@ describe("tokenize", () => {
   it("strips edge punctuation", () => {
     expect(tokenize('"Halo,"')[0]).toEqual({ display: '"Halo,"', spoken: ["halo"] });
   });
+  it("strips curly quotes and dashes", () => {
+    expect(tokenize("“50”")[0].spoken).toEqual(["lima", "puluh"]);
+    expect(tokenize("-5")[0].spoken).toEqual(["lima"]);
+  });
+  it("percent forms", () => {
+    expect(tokenize("50%")[0].spoken).toEqual(["lima", "puluh", "persen"]);
+    expect(tokenize("2,5%")[0].spoken).toEqual(["dua", "koma", "lima", "persen"]);
+  });
   it("removes hyphens", () => {
     expect(tokenize("self-driving")[0].spoken).toEqual(["selfdriving"]);
   });
@@ -87,6 +95,32 @@ describe("checkCaption", () => {
       expect((e as UnspeakableTokenError).lineId).toBe("07");
       expect((e as Error).message).toContain("Baris 07");
       expect((e as Error).message).toContain(`"${tok}"`);
+    }
+  });
+  it.each(["1.5", "5-10"])("flags leftover digits %s", (tok) => {
+    for (const l of [line("x", `ada ${tok}`, "04"), line(`ada ${tok}`, undefined, "04")]) {
+      try {
+        checkCaption(l);
+        expect.unreachable();
+      } catch (e) {
+        expect(e).toBeInstanceOf(UnspeakableTokenError);
+        expect((e as UnspeakableTokenError).token).toBe(tok);
+        expect((e as Error).message).toContain("Baris 04");
+      }
+    }
+  });
+  it("accepts curly-quoted number and percents", () => {
+    expect(() => checkCaption(line("“lima puluh” persen", "“50” persen"))).not.toThrow();
+    expect(() => checkCaption(line("lima puluh persen", "50%"))).not.toThrow();
+  });
+  it("wraps out-of-range numbers", () => {
+    try {
+      checkCaption(line("x", "ada 1000000000", "09"));
+      expect.unreachable();
+    } catch (e) {
+      expect(e).toBeInstanceOf(UnspeakableTokenError);
+      expect((e as UnspeakableTokenError).token).toBe("1000000000");
+      expect((e as UnspeakableTokenError).lineId).toBe("09");
     }
   });
   it("checks spoken when no caption", () => {
