@@ -8,11 +8,15 @@
     "node": ">=20.19"
   },
   "dependencies": {
+    "@huggingface/transformers": "4.2.0",
+    "@mediabunny/server": "1.62.0",
     "@remotion/cli": "4.0.539",
     "@remotion/google-fonts": "4.0.539",
     "@remotion/install-whisper-cpp": "4.0.539",
     "@remotion/media": "4.0.539",
     "@remotion/transitions": "4.0.539",
+    "@remotion/whisper-webgpu": "4.0.539",
+    "mediabunny": "1.62.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.539",
