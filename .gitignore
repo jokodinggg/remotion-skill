@@ -5,3 +5,12 @@ node_modules/
 out/
 .DS_Store
 .claude/settings.local.json
+
+# Generated / owner-supplied media
+public/brand/
+public/videos/
+public/library/**/*.mp3
+public/library/**/*.wav
+videos/*/vo/
+videos/*/music.*
+test/fixtures/.cache/
