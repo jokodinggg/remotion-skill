@@ -1,4 +1,5 @@
 import { random } from "remotion";
+import { parseHex } from "../style";
 
 /**
  * Person variants and the crowd layout. Pure data and math (no React), so
@@ -18,19 +19,6 @@ export type PersonLook = {
 export const SKIN = ["#F6D2B4", "#E4B58F", "#C68B5E", "#8D5A3B"] as const;
 /** Neck / shade tone per skin, same index as SKIN. */
 export const SKIN_SHADE = ["#E6B48F", "#CF9A70", "#A9714A", "#6F432B"] as const;
-
-/** Neutrals the brand palette lacks. */
-export const PERSON_NEUTRALS = {
-  hair: "#322F30",
-  hairGloss: "#5A5657",
-  pants: "#4A5568",
-  pantsGloss: "#6B7789",
-  mouth: "#6E2E2E",
-  tongue: "#F07AA0",
-  beige: "#EFE3CF",
-  charcoal: "#5A5657",
-  headset: "#5A5657",
-} as const;
 
 /**
  * Native coordinate space. The head and shoulders are 420 units wide in every
@@ -53,22 +41,7 @@ export const personSize = (pose: PersonPose, width: number): { w: number; h: num
   return { w: PERSON_BOX[pose].w * s, h: PERSON_BOX[pose].h * s };
 };
 
-// ── color helpers (flat tints, never gradients) ───────────────────────────
-const parseHex = (hex: string): [number, number, number] | null => {
-  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-  if (!m) return null;
-  const n = parseInt(m[1], 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-};
-
-const toHex = (rgb: number[]): string => `#${rgb.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("")}`;
-
-/** Mix a hex color toward white by `amount` (0..1). Non-hex input is returned unchanged. */
-export const tint = (hex: string, amount: number): string => {
-  const rgb = parseHex(hex);
-  return rgb ? toHex(rgb.map((v) => v + (255 - v) * amount)) : hex;
-};
-
+// ── color helpers ─────────────────────────────────────────────────────────
 const luminance = (hex: string): number => {
   const rgb = parseHex(hex);
   if (!rgb) return 0.5;

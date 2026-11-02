@@ -2,15 +2,13 @@ import React from "react";
 import { random, useCurrentFrame } from "remotion";
 import { useBrand } from "../../fondasi/brand/BrandProvider";
 import type { PersonMood } from "../../fondasi/expression";
-import { EXTRA_COLORS as X, STYLE } from "../style";
+import { EXTRA_COLORS as X, STYLE, tint } from "../style";
 import {
   hijabColor,
   PERSON_BOX,
-  PERSON_NEUTRALS as N,
   personSize,
   SKIN,
   SKIN_SHADE,
-  tint,
   type PersonLook,
   type PersonPose,
 } from "./variants";
@@ -70,13 +68,13 @@ const ARMS: Record<Exclude<PersonPose, "duduk">, ArmSet> = {
 
 const Legs: React.FC<{ C: Palette }> = ({ C }) => (
   <g>
-    <Limb pts={[[172, 560], [166, 700]]} w={56} fill={N.pants} C={C} />
-    <Limb pts={[[248, 560], [254, 700]]} w={56} fill={N.pants} C={C} />
-    <path d="M150 600 L148 660" stroke={N.pantsGloss} strokeWidth={10} strokeLinecap="round" />
+    <Limb pts={[[172, 560], [166, 700]]} w={56} fill={X.pants} C={C} />
+    <Limb pts={[[248, 560], [254, 700]]} w={56} fill={X.pants} C={C} />
+    <path d="M150 600 L148 660" stroke={X.pantsGloss} strokeWidth={10} strokeLinecap="round" />
     <path d="M114 724 C114 698 138 690 166 692 C190 694 198 708 196 726 C196 736 188 740 176 740 L124 740 C116 740 114 734 114 724 Z" fill={C.thunder} stroke={C.thunder} strokeWidth={OL - 2} strokeLinejoin="round" />
     <path d="M306 724 C306 698 282 690 254 692 C230 694 222 708 224 726 C224 736 232 740 244 740 L296 740 C304 740 306 734 306 724 Z" fill={C.thunder} stroke={C.thunder} strokeWidth={OL - 2} strokeLinejoin="round" />
-    <path d="M134 708 Q146 700 160 700" fill="none" stroke={N.hairGloss} strokeWidth={6} strokeLinecap="round" />
-    <path d="M286 708 Q274 700 260 700" fill="none" stroke={N.hairGloss} strokeWidth={6} strokeLinecap="round" />
+    <path d="M134 708 Q146 700 160 700" fill="none" stroke={X.hairGloss} strokeWidth={6} strokeLinecap="round" />
+    <path d="M286 708 Q274 700 260 700" fill="none" stroke={X.hairGloss} strokeWidth={6} strokeLinecap="round" />
   </g>
 );
 
@@ -178,14 +176,14 @@ const Mouth: React.FC<{ mood: PersonMood; talk: number; C: Palette }> = ({ mood,
   const ink = C.thunder;
   if (talk > 0.05) {
     const h = 8 + talk * 26;
-    return <path d={`M190 240 L230 240 Q228 ${240 + h} 210 ${240 + h} Q192 ${240 + h} 190 240 Z`} fill={N.mouth} stroke={ink} strokeWidth={6} strokeLinejoin="round" />;
+    return <path d={`M190 240 L230 240 Q228 ${240 + h} 210 ${240 + h} Q192 ${240 + h} 190 240 Z`} fill={X.mouth} stroke={ink} strokeWidth={6} strokeLinejoin="round" />;
   }
   switch (mood) {
     case "senang":
       return (
         <g>
-          <path d="M182 236 L238 236 Q236 268 210 268 Q184 268 182 236 Z" fill={N.mouth} stroke={ink} strokeWidth={7} strokeLinejoin="round" />
-          <path d="M196 260 Q210 250 224 260 Q218 266 210 266 Q202 266 196 260 Z" fill={N.tongue} />
+          <path d="M182 236 L238 236 Q236 268 210 268 Q184 268 182 236 Z" fill={X.mouth} stroke={ink} strokeWidth={7} strokeLinejoin="round" />
+          <path d="M196 260 Q210 250 224 260 Q218 266 210 266 Q202 266 196 260 Z" fill={X.tongue} />
         </g>
       );
     case "panik":
@@ -193,7 +191,7 @@ const Mouth: React.FC<{ mood: PersonMood; talk: number; C: Palette }> = ({ mood,
     case "sedih":
       return <path d="M192 256 Q210 240 228 256" fill="none" stroke={ink} strokeWidth={8} strokeLinecap="round" />;
     case "kagum":
-      return <ellipse cx={210} cy={250} rx={11} ry={14} fill={N.mouth} stroke={ink} strokeWidth={6} />;
+      return <ellipse cx={210} cy={250} rx={11} ry={14} fill={X.mouth} stroke={ink} strokeWidth={6} />;
     case "bingung":
       return <path d="M196 250 Q206 242 216 250 T236 246" fill="none" stroke={ink} strokeWidth={8} strokeLinecap="round" />;
     default:
@@ -279,13 +277,13 @@ const Glasses: React.FC<{ C: Palette; temples: boolean }> = ({ C, temples }) => 
 const Headset: React.FC<{ C: Palette }> = ({ C }) => (
   <g>
     <path d="M86 196 C78 12 342 12 334 196" fill="none" stroke={C.thunder} strokeWidth={24} strokeLinecap="round" />
-    <path d="M86 196 C78 12 342 12 334 196" fill="none" stroke={N.headset} strokeWidth={8} strokeLinecap="round" />
+    <path d="M86 196 C78 12 342 12 334 196" fill="none" stroke={X.headset} strokeWidth={8} strokeLinecap="round" />
     <path d="M84 222 Q96 266 158 266" fill="none" stroke={C.thunder} strokeWidth={8} strokeLinecap="round" />
     <circle cx={164} cy={266} r={10} fill={C.thunder} />
     {[66, 314].map((x) => (
       <g key={x}>
-        <rect x={x} y={158} width={40} height={68} rx={16} fill={N.headset} stroke={C.thunder} strokeWidth={OL - 2} />
-        <path d={`M${x + 12} ${172} L${x + 12} ${190}`} stroke={tint(N.headset, 0.4)} strokeWidth={6} strokeLinecap="round" />
+        <rect x={x} y={158} width={40} height={68} rx={16} fill={X.headset} stroke={C.thunder} strokeWidth={OL - 2} />
+        <path d={`M${x + 12} ${172} L${x + 12} ${190}`} stroke={tint(X.headset, 0.4)} strokeWidth={6} strokeLinecap="round" />
       </g>
     ))}
   </g>
@@ -318,7 +316,7 @@ export const Person: React.FC<PersonProps> = ({ look, mood, pose, talk = 0, blin
   const size = personSize(pose, width);
   const seated = pose === "duduk";
   const hijab = look.hair === "hijab";
-  const hijabFill = hijabColor(outfit, [N.beige, N.charcoal, C.hijauTua]);
+  const hijabFill = hijabColor(outfit, [X.beige, X.charcoal, C.hijauTua]);
 
   const shake = mood === "panik" ? Math.sin(frame * 1.7) * 3 : 0;
   const bob = Math.sin(frame / 14 + phase) * 4;
@@ -331,7 +329,7 @@ export const Person: React.FC<PersonProps> = ({ look, mood, pose, talk = 0, blin
       {/* hair behind the body */}
       {look.hair === "panjang" && (
         <g transform={headT}>
-          <path d={HAIR_BACK_LONG} fill={N.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
+          <path d={HAIR_BACK_LONG} fill={X.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
         </g>
       )}
 
@@ -383,15 +381,15 @@ export const Person: React.FC<PersonProps> = ({ look, mood, pose, talk = 0, blin
             )}
             <ellipse {...HEAD} fill={skin} stroke={C.thunder} strokeWidth={OL} />
             {look.hair === "pendek" ? (
-              <path d={HAIR_SHORT} fill={N.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
+              <path d={HAIR_SHORT} fill={X.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
             ) : (
               <>
-                <path d={LOCK_L} fill={N.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
-                <path d={LOCK_R} fill={N.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
-                <path d={BANGS_LONG} fill={N.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
+                <path d={LOCK_L} fill={X.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
+                <path d={LOCK_R} fill={X.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
+                <path d={BANGS_LONG} fill={X.hair} stroke={C.thunder} strokeWidth={OL} strokeLinejoin="round" />
               </>
             )}
-            <path d="M150 84 Q190 66 232 70" fill="none" stroke={N.hairGloss} strokeWidth={10} strokeLinecap="round" />
+            <path d="M150 84 Q190 66 232 70" fill="none" stroke={X.hairGloss} strokeWidth={10} strokeLinecap="round" />
           </>
         )}
 
