@@ -31,6 +31,11 @@ export async function loudnorm(input: string, output: string): Promise<void> {
   ]);
 }
 
+/** Re-encodes any audio to mp3 192k without changing loudness. */
+export async function toMp3(input: string, output: string): Promise<void> {
+  await run(FFMPEG, ["-y", "-i", input, "-vn", "-c:a", "libmp3lame", "-b:a", "192k", output]);
+}
+
 export async function probeDurationMs(file: string): Promise<number> {
   const out = await run(FFPROBE, [
     "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", file,
