@@ -124,7 +124,7 @@ export function checkCaption(line: ScriptLine): void {
   const spokenTokens = tokenizeForLine(line.id, stripTags(line.spoken));
   const captionTokens =
     line.caption === undefined ? undefined : tokenizeForLine(line.id, line.caption);
-  for (const t of captionTokens ?? spokenTokens) {
+  for (const t of [...spokenTokens, ...(captionTokens ?? [])]) {
     if (isUnspeakable(t)) throw new UnspeakableTokenError(line.id, t.display);
   }
   if (captionTokens) {

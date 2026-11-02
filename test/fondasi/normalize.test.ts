@@ -109,6 +109,16 @@ describe("checkCaption", () => {
       }
     }
   });
+  it("flags unspeakable spoken token even when caption is present", () => {
+    try {
+      checkCaption(line("ada 1.5 detik", "ada satu koma lima detik", "12"));
+      expect.unreachable();
+    } catch (e) {
+      expect(e).toBeInstanceOf(UnspeakableTokenError);
+      expect((e as UnspeakableTokenError).token).toBe("1.5");
+      expect((e as UnspeakableTokenError).lineId).toBe("12");
+    }
+  });
   it("accepts curly-quoted number and percents", () => {
     expect(() => checkCaption(line("“lima puluh” persen", "“50” persen"))).not.toThrow();
     expect(() => checkCaption(line("lima puluh persen", "50%"))).not.toThrow();
