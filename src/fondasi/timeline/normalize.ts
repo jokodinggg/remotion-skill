@@ -1,7 +1,7 @@
 import type { ScriptLine } from "../schema";
 
 const ONES = ["nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"];
-const EDGE_PUNCT = /^[?!.,:;"'()…“”‘’–—]+|[?!.,:;"'()…“”‘’–—]+$/g;
+const EDGE_PUNCT = /^[?!.,:;"'()…“”‘’–—-]+|[?!.,:;"'()…“”‘’–—-]+$/g;
 
 export type DisplayToken = { display: string; spoken: string[] };
 
